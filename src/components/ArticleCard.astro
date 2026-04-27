@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string;
+  date: string;
+  slug: string;
+  desc: string;
+  words: string[];
+  level: number;
+  source: string;
+}
+
+const { title, date, slug, desc, words, level } = Astro.props;
+
+const d = new Date(date);
+const mon = d.toLocaleString('en', { month: 'short' }).toUpperCase();
+const day = d.getDate();
+const year = d.getFullYear();
+---
+
+<a class="entry" href={`/articles/${slug}/`}>
+  <div class="entry__date">
+    <span class="entry__mon">{mon}</span>
+    <span class="entry__day">{day}</span>
+    <span class="entry__yr">{year}</span>
+  </div>
+  <div class="entry__body">
+    <h2 class="entry__title">{title}</h2>
+    <p class="entry__desc">{desc}</p>
+    <div class="entry__foot">
+      <div class="entry__words">
+        {words.map((w, i) => (
+          <span class="entry__word">{i > 0 ? '· ' : ''}{w}</span>
+        ))}
+      </div>
+      <span class="entry__lv">LV {level}</span>
+    </div>
+  </div>
+</a>

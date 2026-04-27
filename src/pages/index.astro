@@ -1,0 +1,75 @@
+---
+import ArticleCard from '../components/ArticleCard.astro';
+import '../styles/global.css';
+import { readdir, readFile } from 'node:fs/promises';
+import { join } from 'node:path';
+
+// Scan all meta.json files from public/articles/
+const articlesDir = join(process.cwd(), 'public', 'articles');
+const dirs = await readdir(articlesDir);
+
+const articles = (await Promise.all(
+  dirs.map(async (dir) => {
+    try {
+      const raw = await readFile(join(articlesDir, dir, 'meta.json'), 'utf-8');
+      return JSON.parse(raw) as {
+        title: string; date: string; slug: string;
+        desc: string; words: string[]; level: number; source: string;
+      };
+    } catch { return null; }
+  })
+)).filter(Boolean).sort((a, b) =>
+  new Date(b!.date).getTime() - new Date(a!.date).getTime()
+) as any[];
+
+const totalWords = articles.reduce((n: number, a: any) => n + a.words.length, 0);
+---
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="沉浸式英语阅读作品集 — 每一篇阅读，都是一件设计作品。" />
+  <title>Reading Hub</title>
+</head>
+<body>
+<main class="hub">
+
+  <header class="header">
+    <p class="header__label">Immersive English Reading</p>
+    <h1 class="header__title"><strong>Reading</strong><br>Hub</h1>
+    <p class="header__desc">每一篇阅读，都是一件沉浸式设计作品。<br>留白 · 間 · 自然光晕。</p>
+  </header>
+
+  <div class="divider"></div>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="stat__n">{articles.length}</span>
+      <span class="stat__l">Articles</span>
+    </div>
+    <div class="stat">
+      <span class="stat__n">{totalWords}</span>
+      <span class="stat__l">Words</span>
+    </div>
+  </div>
+
+  <section class="list">
+    {articles.map(a => <ArticleCard {...a} />)}
+  </section>
+
+  <footer class="footer">
+    <p class="footer__text">Reading Hub · 留白 × 間 × Natural Light</p>
+  </footer>
+
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.entry').forEach((el, i) => {
+    setTimeout(() => el.classList.add('in'), 120 + i * 90);
+  });
+});
+</script>
+</body>
+</html>
