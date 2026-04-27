@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waking Into Floodwater · Reading Deck 2026-04-27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1e2a4a; --ink-rgb:30,42,74;
+    --paper:#f0f4ff; --paper-rgb:240,244,255;
+    --paper-tint:#e4eaff; --ink-tint:#2d3d6b;
+
+    --accent:#6b8cff;
+    --accent-soft:rgba(107,140,255,0.12);
+    --border:rgba(107,140,255,0.3);
+    --tooltip-text:#f0f4ff;
+
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+    --serif-en:"Playfair Display","Source Serif 4",Georgia,serif;
+    --serif-body-en:"Source Serif 4",Georgia,serif;
+    --serif-zh:"Noto Serif SC",source-han-serif-sc,serif;
+    --sans-zh:"Noto Sans SC",source-han-sans-sc,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);color:var(--paper);font-family:var(--sans-zh);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+  canvas.bg{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block;transition:opacity 1.2s ease}
+  canvas#bg-light{opacity:0}
+  canvas#bg-dark{opacity:1}
+  body.light-bg canvas#bg-light{opacity:1}
+  body.light-bg canvas#bg-dark{opacity:0}
+
+  #deck{position:fixed;inset:0;width:10000vw;height:100vh;display:flex;flex-wrap:nowrap;transition:transform .9s cubic-bezier(.77,0,.175,1);z-index:10;will-change:transform}
+  .slide{width:100vw;height:100vh;flex:0 0 100vw;position:relative;padding:6vh 6vw 10vh 6vw;display:flex;flex-direction:column;overflow:hidden}
+  .slide.light{color:var(--ink)}
+  .slide.dark{color:var(--paper)}
+
+  .slide::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;transition:background .7s ease}
+  .slide.light::before{background:rgba(var(--paper-rgb),.78);backdrop-filter:blur(3px)}
+  .slide.dark::before{background:rgba(var(--ink-rgb),.78);backdrop-filter:blur(3px)}
+  .slide.hero.light::before{background:rgba(var(--paper-rgb),.16);backdrop-filter:none}
+  .slide.hero.dark::before{background:rgba(var(--ink-rgb),.12);backdrop-filter:none}
+  .slide.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none}
+  .slide.hero.light::after{background:linear-gradient(180deg,rgba(var(--paper-rgb),.28) 0%,rgba(var(--paper-rgb),0) 14%,rgba(var(--paper-rgb),0) 86%,rgba(var(--paper-rgb),.28) 100%)}
+  .slide.hero.dark::after{background:linear-gradient(180deg,rgba(var(--ink-rgb),.32) 0%,rgba(var(--ink-rgb),0) 14%,rgba(var(--ink-rgb),0) 86%,rgba(var(--ink-rgb),.32) 100%)}
+
+  .chrome{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.7}
+  .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.55}
+
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;opacity:.6;margin-bottom:2.6vh}
+
+  /* Hero layout */
+  .hero__body{flex:1;display:flex;flex-direction:column;justify-content:center}
+  .hero__title{font-family:var(--serif-en);font-weight:800;font-size:clamp(2.4rem,6vw,5.5rem);line-height:1.0;letter-spacing:-.025em;margin-bottom:2vh}
+  .hero__sub{font-family:var(--serif-zh);font-weight:400;font-size:clamp(1rem,1.8vw,1.5rem);opacity:.75;margin-bottom:2.4vh}
+  .hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-2;opacity:.45}
+  .hero__quote{font-family:var(--serif-en);font-style:italic;font-weight:500;font-size:clamp(1.4rem,3vw,2.8rem);line-height:1.35;max-width:72%;opacity:.92}
+
+  .badge-row{display:flex;gap:1rem;margin-bottom:2vh}
+  .badge{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;padding:5px 12px;border:1px solid currentColor;opacity:.7}
+
+  /* Content split layout */
+  .content-split{flex:1;display:grid;grid-template-columns:55fr 45fr;gap:4vw;align-items:center;min-height:0}
+  .content-split__text{display:flex;flex-direction:column;gap:1.4vh}
+  .content-split__img{display:flex;flex-direction:column;gap:1vh}
+  .content-split__img img{width:100%;height:auto;max-height:58vh;object-fit:cover;object-position:top center;border-radius:3px}
+  .illus__cap{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.6}
+
+  /* Sentence typography */
+  .sentence{font-family:var(--serif-body-en);font-size:clamp(0.95rem,1.45vw,1.25rem);line-height:1.65;opacity:.9}
+  .sentence.lead{font-family:var(--serif-en);font-size:clamp(1.1rem,1.75vw,1.5rem);font-weight:500;opacity:1}
+  .sentence.lead::first-letter{font-size:3.2em;font-weight:700;float:left;line-height:.8;margin-right:.08em;margin-top:.05em;font-family:var(--serif-en)}
+
+  /* Vocab star grid */
+  .vocab-star-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2vh 3vw;margin-top:2vh;max-width:680px}
+  .vocab-star__item{display:flex;flex-direction:column;gap:.4vh;padding:1.4vh 0;border-top:1px solid rgba(var(--ink-rgb),.18)}
+  .slide.dark .vocab-star__item{border-top-color:rgba(var(--paper-rgb),.18)}
+  .vocab-star__word{font-family:var(--serif-en);font-weight:700;font-size:clamp(1.1rem,1.8vw,1.6rem);letter-spacing:-.01em}
+  .vocab-star__pos{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.5}
+  .vocab-star__def{font-family:var(--sans-zh);font-size:clamp(.85rem,1.1vw,1rem);opacity:.78;line-height:1.5}
+
+  /* Open question */
+  .open-question__text{font-size:clamp(1rem,1.6vw,1.4rem);line-height:1.6;margin-bottom:2vh;font-family:var(--serif-zh)}
+  .open-answer__toggle{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border:1px solid var(--border);border-radius:20px;background:transparent;color:inherit;cursor:pointer;font-size:.8rem;letter-spacing:.05em;transition:border-color .2s,color .2s}
+  .open-answer__toggle:hover{border-color:var(--accent);color:var(--accent)}
+  .open-answer__content{margin-top:1rem;padding:1rem 1.25rem;border-left:2px solid var(--accent);font-size:.9rem;line-height:1.6;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;display:none}
+  .open-answer__content.visible{opacity:1;transform:translateY(0)}
+
+  /* Ghost Audio */
+  .ghost-audio__btn{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--border);border-radius:20px;background:transparent;color:inherit;cursor:pointer;font-size:.75rem;letter-spacing:.05em;transition:border-color .2s,color .2s}
+  .ghost-audio__btn:hover,.ghost-audio__btn.playing{border-color:var(--accent);color:var(--accent)}
+  .ghost-audio__btn svg{width:14px;height:14px;flex-shrink:0}
+  .ghost-audio__btn.playing .play-icon{display:none}
+  .ghost-audio__btn.playing .pause-icon{display:block!important}
+  .ghost-audio__btn--full{padding:8px 20px;font-size:.85rem;margin-top:1.5rem}
+  .para--playing{border-left:2px solid var(--accent);padding-left:1rem;transition:border-color .3s}
+
+  /* Vocab Tooltip */
+  .vocab-highlight{position:relative;font-weight:600;border-bottom:1px dashed var(--accent);cursor:help;transition:color .2s}
+  .vocab-highlight:hover{color:var(--accent)}
+  .vocab-highlight::after{content:attr(data-meaning);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);background:var(--ink);color:var(--tooltip-text);padding:6px 12px;border-radius:6px;font-size:.78rem;font-weight:400;white-space:normal;max-width:260px;line-height:1.4;pointer-events:none;opacity:0;transition:opacity .2s,transform .2s;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+  .vocab-highlight:hover::after,.vocab-highlight.tapped::after{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* Nav */
+  #nav{position:fixed;left:50%;bottom:2.6vh;transform:translateX(-50%);z-index:30;display:flex;gap:10px;padding:8px 14px;border-radius:999px;background:rgba(0,0,0,.18);backdrop-filter:blur(10px)}
+  #nav .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s ease;border:0;padding:0}
+  #nav .dot:hover{background:rgba(255,255,255,.5);transform:scale(1.15)}
+  #nav .dot.active{background:rgba(255,255,255,.95);width:22px;border-radius:999px}
+  body.light-bg #nav{background:rgba(255,255,255,.25)}
+  body.light-bg #nav .dot{background:rgba(var(--ink-rgb),.25)}
+  body.light-bg #nav .dot.active{background:rgba(var(--ink-rgb),.9)}
+  #hint{position:fixed;bottom:3vh;right:3vw;z-index:30;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.4;mix-blend-mode:difference;color:#aaa}
+
+  [data-anim]{opacity:0}
+  [data-anim="left"]{transform:translateX(-24px)}
+  [data-anim="right"]{transform:translateX(24px)}
+
+  @media(max-width:900px){
+    .content-split{grid-template-columns:1fr;grid-template-rows:auto auto}
+    .content-split__img{display:none}
+    .vocab-star-grid{grid-template-columns:1fr 1fr}
+    .hero__title{font-size:clamp(2rem,8vw,3.5rem)}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg-dark" class="bg"></canvas>
+<canvas id="bg-light" class="bg"></canvas>
+<div id="hint">← → 翻页 · ESC 索引</div>
+
+<div id="deck">
+
+<!-- PAGE 1: Cover (hero dark) -->
+<section class="slide hero dark" data-theme="dark">
+  <div class="chrome">
+    <span class="kicker">Reading Practice · 2026-04-27</span>
+    <span class="kicker">Level 3 / 5</span>
+  </div>
+  <div class="hero__body">
+    <p class="kicker" data-anim="cascade">The Times · Disaster Narrative</p>
+    <h1 class="hero__title" data-anim="cascade">Waking Into<br>Floodwater</h1>
+    <p class="hero__sub" data-anim="cascade">台风夜，菲律宾，一场从睡梦中开始的逃亡</p>
+    <div class="badge-row" data-anim="cascade">
+      <span class="badge">LV.3</span>
+      <span class="badge">Disaster</span>
+      <span class="badge">4 Words</span>
+    </div>
+    <button class="ghost-audio__btn ghost-audio__btn--full" data-anim="cascade"
+            data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/full_20260427203353_c0106f75.mp3"
+            data-para-id="">
+      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
+      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      <span>全文朗读</span>
+    </button>
+  </div>
+  <img class="hero__img" src="./hero.png" alt="Typhoon flood in Philippines">
+  <div class="foot"><span>Reading Deck</span><span>1 / 7</span></div>
+</section>
+
+<!-- PAGE 2: Vocab Warm-up (hero light) -->
+<section class="slide hero light" data-theme="light">
+  <div class="chrome">
+    <span class="kicker">Act I</span>
+    <span class="kicker">Vocabulary Warm-up</span>
+  </div>
+  <div class="hero__body">
+    <h2 class="hero__title" data-anim="hero" style="color:var(--ink)">Target Words</h2>
+    <div class="vocab-star-grid" data-anim="cascade">
+      <div class="vocab-star__item">
+        <span class="vocab-star__word">evacuate</span>
+        <span class="vocab-star__pos">v.</span>
+        <span class="vocab-star__def">撤离，疏散 — to leave a dangerous place urgently</span>
+      </div>
+      <div class="vocab-star__item">
+        <span class="vocab-star__word">chaos</span>
+        <span class="vocab-star__pos">n.</span>
+        <span class="vocab-star__def">混乱，无序 — a state of complete disorder</span>
+      </div>
+      <div class="vocab-star__item">
+        <span class="vocab-star__word">inundate</span>
+        <span class="vocab-star__pos">v.</span>
+        <span class="vocab-star__def">淹没，泛滥 — to flood or overwhelm completely</span>
+      </div>
+      <div class="vocab-star__item">
+        <span class="vocab-star__word">tremble</span>
+        <span class="vocab-star__pos">v.</span>
+        <span class="vocab-star__def">颤抖，发抖 — to shake involuntarily from fear or cold</span>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>词汇预热 · 先认识，再阅读</span><span>2 / 7</span></div>
+</section>
+
+<!-- PAGE 3: Paragraph 1 (dark) -->
+<section class="slide dark" data-theme="dark">
+  <div class="chrome">
+    <span>Paragraph 1</span>
+    <button class="ghost-audio__btn"
+            data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_0_20260427203334_7fd1e847.mp3"
+            data-para-id="para-1">
+      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
+      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+    </button>
+  </div>
+  <div class="content-split">
+    <div class="content-split__text" data-anim="cascade">
+      <p class="sentence lead" id="para-1" style="max-width:68%">At 2:30 a.m., Elder woke to a strange sound—</p>
+      <p class="sentence" style="max-width:62%">a low, relentless roar outside his window in the Philippines.</p>
+      <p class="sentence" style="max-width:88%">He swung his legs off the bed and splashed into cold water, seven inches deep, right in his bedroom.</p>
+      <p class="sentence" style="max-width:82%">His heart raced as he realized the living room, just two steps down, was already under nearly two feet of floodwater.</p>
+      <p class="sentence" style="max-width:58%">A typhoon had struck, turning their home into a lake.</p>
+    </div>
+    <figure class="content-split__img" data-anim="cascade">
+      <img src="./hero.png" alt="Waking into floodwater">
+      <figcaption class="illus__cap">splashed into cold water, seven inches deep</figcaption>
+    </figure>
+  </div>
+  <div class="foot"><span>Paragraph 1 of 3</span><span>3 / 7</span></div>
+</section>
+
+<!-- PAGE 4: Paragraph 2 (light) -->
+<section class="slide light" data-theme="light">
+  <div class="chrome">
+    <span>Paragraph 2</span>
+    <button class="ghost-audio__btn"
+            data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_1_20260427203343_0f366453.mp3"
+            data-para-id="para-2">
+      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
+      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+    </button>
+  </div>
+  <div class="content-split">
+    <div class="content-split__text" data-anim="cascade">
+      <p class="sentence lead" id="para-2" style="max-width:60%">In the <span class="vocab-highlight" data-meaning="混乱 — a state of complete disorder">chaos</span>, he and his companion scrambled to pack.</p>
+      <p class="sentence" style="max-width:84%">One backpack each, stuffed with whatever supplies they could grab—clothes, food, a flashlight.</p>
+      <p class="sentence" style="max-width:90%">The water <span class="vocab-highlight" data-meaning="淹没 — to flood or overwhelm completely">inundated</span> every corner, creeping higher by the minute.</p>
+      <p class="sentence" style="max-width:78%">Fear made his hands <span class="vocab-highlight" data-meaning="颤抖 — to shake involuntarily from fear">tremble</span> as he zipped up the bag, the roar of the storm growing louder.</p>
+      <p class="sentence" style="max-width:94%">They had no choice but to <span class="vocab-highlight" data-meaning="撤离 — to leave a dangerous place urgently">evacuate</span>, pushing through the soaked streets, wading for miles through water that tugged at their knees.</p>
+    </div>
+    <figure class="content-split__img" data-anim="cascade">
+      <img src="./scene-01.png" alt="Packing in chaos">
+      <figcaption class="illus__cap">one backpack each, stuffed with whatever they could grab</figcaption>
+    </figure>
+  </div>
+  <div class="foot"><span>Paragraph 2 of 3</span><span>4 / 7</span></div>
+</section>
+
+<!-- PAGE 5: Key Question (hero dark) -->
+<section class="slide hero dark" data-theme="dark">
+  <div class="chrome">
+    <span class="kicker">Key Question</span>
+  </div>
+  <div class="hero__body">
+    <blockquote class="hero__quote" data-anim="cascade">
+      "They stood in silence, taking in the destruction, knowing they'd have to start over from nothing."
+    </blockquote>
+    <p style="margin-top:3vh;font-family:var(--mono);font-size:.8rem;letter-spacing:.15em;opacity:.55" data-anim="cascade">
+      — What does it feel like to lose everything and start over?
+    </p>
+  </div>
+  <div class="foot"><span>— Reading Practice 2026-04-27</span><span>5 / 7</span></div>
+</section>
+
+<!-- PAGE 6: Paragraph 3 (dark) -->
+<section class="slide dark" data-theme="dark">
+  <div class="chrome">
+    <span>Paragraph 3</span>
+    <button class="ghost-audio__btn"
+            data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_2_20260427203352_8820efe6.mp3"
+            data-para-id="para-3">
+      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
+      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+    </button>
+  </div>
+  <div class="content-split">
+    <div class="content-split__text" data-anim="cascade">
+      <p class="sentence lead" id="para-3" style="max-width:66%">Hours later, they reached a two-story church, a safe haven above the flood.</p>
+      <p class="sentence" style="max-width:52%">Days passed before they could return.</p>
+      <p class="sentence" style="max-width:60%">When they did, the sight was staggering.</p>
+      <p class="sentence" style="max-width:92%">Desks lay tipped over in murky water, furniture floated aimlessly, and every paper they owned was ruined.</p>
+      <p class="sentence" style="max-width:78%">Thick mud coated the floors, a grim reminder of the storm's power.</p>
+      <p class="sentence" style="max-width:88%">They stood in silence, taking in the destruction, knowing they'd have to start over from nothing.</p>
+    </div>
+    <figure class="content-split__img" data-anim="cascade">
+      <img src="./scene-02.png" alt="Aftermath of the flood">
+      <figcaption class="illus__cap">thick mud coated the floors, a grim reminder</figcaption>
+    </figure>
+  </div>
+  <div class="foot"><span>Paragraph 3 of 3</span><span>6 / 7</span></div>
+</section>
+
+<!-- PAGE 7: Open Question (hero light) -->
+<section class="slide hero light" data-theme="light">
+  <div class="chrome">
+    <span class="kicker">Open Question</span>
+  </div>
+  <div class="hero__body">
+    <div onclick="event.stopPropagation()">
+      <p class="open-question__text" data-anim="hero" style="color:var(--ink)">
+        如果你是 Elder，在洪水退去、回到满是泥泞的家后，你会优先做什么？你认为他们最难熬的是哪个时刻？
+      </p>
+      <button class="open-answer__toggle" onclick="toggleAnswer(this)" style="color:var(--ink)">
+        查看参考答案
+      </button>
+      <div class="open-answer__content">
+        <p>参考：优先确认家人安全，清理泥浆防止疾病，联系保险或救援机构。最难熬的时刻可能是凌晨踩入冰冷洪水的那一刻——从睡梦到危机，毫无准备；也可能是数日后返家，看到一切化为废墟，意识到要从零开始的那种绝望。</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>思考题 · 没有标准答案</span><span>7 / 7</span></div>
+</section>
+
+</div><!-- #deck -->
+
+<div id="nav"></div>
+
+<script>
+const VS=`attribute vec2 position;void main(){gl_Position=vec4(position,0.0,1.0);}`;
+const FS_DARK=`precision highp float;
+uniform vec2 u_resolution;uniform float u_time;uniform vec2 u_mouse;
+vec3 palette(float t,vec3 a,vec3 b,vec3 c,vec3 d){return a+b*cos(6.28318*(c*t+d));}
+void main(){
+  vec2 uv=gl_FragCoord.xy/u_resolution.xy;
+  vec2 p=uv*2.0-1.0;p.x*=u_resolution.x/u_resolution.y;
+  vec2 m=u_mouse*2.0-1.0;m.x*=u_resolution.x/u_resolution.y;
+  float md=length(p-m);float mr=sin(md*15.0-u_time*4.0)*exp(-md*3.0);p+=mr*0.08;
+  vec2 p0=p;
+  for(float i=1.0;i<4.0;i++){p.x+=0.1/i*sin(i*3.0*p.y+u_time*0.4)+0.05;p.y+=0.1/i*cos(i*2.0*p.x+u_time*0.3)-0.05;}
+  float r=length(p);float ang=atan(p.y,p.x);
+  vec3 a=vec3(0.08,0.10,0.18);vec3 b=vec3(0.04,0.06,0.12);vec3 c=vec3(1.0,1.0,1.0);vec3 d=vec3(0.1,0.2,0.5);
+  vec3 col=palette(r*1.5+p0.x*0.5+u_time*0.1,a,b,c,d);
+  float disp=sin(r*25.0-u_time*1.5+ang*2.0)*0.5+0.5;col+=vec3(disp*0.01,disp*0.015,disp*0.03);
+  float hi=pow(sin(p.x*4.0+p.y*3.0+u_time)*0.5+0.5,8.0);col+=hi*0.06;
+  vec3 base=vec3(0.06,0.08,0.16);col=mix(base,col,0.85);gl_FragColor=vec4(col,1.0);}`;
+const FS_LIGHT=`precision highp float;
+uniform vec2 u_resolution;uniform float u_time;uniform vec2 u_mouse;
+float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float noise(vec2 p){vec2 i=floor(p),f=fract(p);float a=hash(i),b=hash(i+vec2(1,0)),c=hash(i+vec2(0,1)),d=hash(i+vec2(1,1));vec2 u=f*f*(3.0-2.0*f);return mix(a,b,u.x)+(c-a)*u.y*(1.0-u.x)+(d-b)*u.x*u.y;}
+float fbm(vec2 p){float v=0.0,a=0.5;mat2 m=mat2(0.80,0.60,-0.60,0.80);for(int i=0;i<5;i++){v+=a*noise(p);p=m*p*2.02;a*=0.5;}return v;}
+void main(){
+  vec2 uv=gl_FragCoord.xy/u_resolution.xy;vec2 p=uv;p.x*=u_resolution.x/u_resolution.y;
+  vec2 md=p-u_mouse;float dl=length(md);p+=normalize(md+vec2(0.0001))*exp(-dl*5.0)*0.03;
+  vec2 q=vec2(fbm(p*1.8+u_time*0.07),fbm(p*1.8+vec2(5.2,1.3)+u_time*0.06));
+  vec2 r=vec2(fbm(p*2.0+q*1.3+vec2(1.7,9.2)+u_time*0.05),fbm(p*2.0+q*1.3+vec2(8.3,2.8)+u_time*0.04));
+  float f=fbm(p*2.2+r*1.5);
+  vec3 c1=vec3(0.82,0.86,0.96);vec3 c2=vec3(0.92,0.94,0.99);vec3 col=mix(c1,c2,f);
+  float ph=r.x*2.2+u_time*0.35;col+=vec3(0.5,0.6,0.9)*sin(ph)*0.04;col+=vec3(0.4,0.5,0.85)*sin(ph*0.8+2.0)*0.03;
+  gl_FragColor=vec4(col,1.0);}`;
+
+const mouse={x:0.5,y:0.5};
+addEventListener('mousemove',e=>{mouse.x=e.clientX/innerWidth;mouse.y=e.clientY/innerHeight});
+function bootGL(id,fs){
+  const canvas=document.getElementById(id);const gl=canvas.getContext('webgl',{alpha:false});if(!gl)return()=>false;
+  const mk=(t,s)=>{const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);return sh};
+  const prog=gl.createProgram();gl.attachShader(prog,mk(gl.VERTEX_SHADER,VS));gl.attachShader(prog,mk(gl.FRAGMENT_SHADER,fs));gl.linkProgram(prog);gl.useProgram(prog);
+  const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
+  const pos=gl.getAttribLocation(prog,'position');gl.enableVertexAttribArray(pos);gl.vertexAttribPointer(pos,2,gl.FLOAT,false,0,0);
+  const lR=gl.getUniformLocation(prog,'u_resolution'),lT=gl.getUniformLocation(prog,'u_time'),lM=gl.getUniformLocation(prog,'u_mouse');
+  const resize=()=>{const d=Math.min(devicePixelRatio||1,2);canvas.width=innerWidth*d;canvas.height=innerHeight*d;gl.viewport(0,0,canvas.width,canvas.height)};
+  addEventListener('resize',resize);resize();
+  return t=>{gl.uniform2f(lR,canvas.width,canvas.height);gl.uniform1f(lT,t);gl.uniform2f(lM,mouse.x,1-mouse.y);gl.drawArrays(gl.TRIANGLES,0,6);return true};
+}
+const drawDark=bootGL('bg-dark',FS_DARK),drawLight=bootGL('bg-light',FS_LIGHT),t0=Date.now();
+(function loop(){const t=(Date.now()-t0)/1000;drawDark(t);drawLight(t);requestAnimationFrame(loop)})();
+
+// Navigation
+const deck=document.getElementById('deck');
+const slides=deck.querySelectorAll('.slide');
+const nav=document.getElementById('nav');
+let idx=0,total=slides.length,lock=false;
+deck.style.width=(total*100)+'vw';
+slides.forEach((s,i)=>{const b=document.createElement('button');b.className='dot';b.dataset.i=i;b.setAttribute('aria-label','Page '+(i+1));b.onclick=()=>go(i);nav.appendChild(b)});
+
+function go(n,skipAudioStop){
+  if(lock)return;
+  if(!skipAudioStop&&typeof stopAllAudio==='function')stopAllAudio();
+  idx=Math.max(0,Math.min(total-1,n));
+  deck.style.transform=`translateX(${-idx*100}vw)`;
+  nav.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+  const el=slides[idx];
+  const th=el.dataset.theme||(el.classList.contains('light')?'light':'dark');
+  document.body.classList.toggle('light-bg',th==='light');
+  if(window.__playSlide)setTimeout(()=>window.__playSlide(idx),450);
+  lock=true;setTimeout(()=>lock=false,700);
+}
+
+// ESC overview
+let overviewOn=false;
+const ov=document.createElement('div');
+ov.id='overview';
+ov.style.cssText='position:fixed;inset:0;z-index:100;background:rgba(var(--ink-rgb),.92);backdrop-filter:blur(12px);display:none;overflow-y:auto;padding:4vh 4vw';
+document.body.appendChild(ov);
+function buildOverview(){
+  ov.innerHTML='';const grid=document.createElement('div');
+  grid.style.cssText='display:grid;grid-template-columns:repeat(4,1fr);gap:2vh 1.6vw;max-width:90vw;margin:0 auto';
+  slides.forEach((s,i)=>{
+    const card=document.createElement('div');
+    card.style.cssText='cursor:pointer;border-radius:6px;overflow:hidden;border:2px solid '+(i===idx?'rgba(var(--paper-rgb),.8)':'rgba(var(--paper-rgb),.15)')+';transition:border-color .2s';
+    const wrap=document.createElement('div');
+    wrap.style.cssText='width:100%;aspect-ratio:16/9;overflow:hidden;position:relative;pointer-events:none;background:'+(s.classList.contains('light')?'var(--paper)':'var(--ink)');
+    const clone=s.cloneNode(true);
+    clone.style.cssText='width:100vw;height:100vh;transform:scale('+(1/4.5)+');transform-origin:top left;position:absolute;top:0;left:0;pointer-events:none';
+    wrap.appendChild(clone);
+    const label=document.createElement('div');
+    label.style.cssText='padding:6px 10px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--paper);opacity:.7';
+    label.textContent=(i+1)+' / '+total;
+    card.appendChild(wrap);card.appendChild(label);
+    card.onclick=()=>{toggleOverview();go(i)};
+    grid.appendChild(card);
+  });
+  ov.appendChild(grid);
+}
+function toggleOverview(){overviewOn=!overviewOn;if(overviewOn){buildOverview();ov.style.display='block';}else{ov.style.display='none';}}
+
+addEventListener('keydown',e=>{
+  if(e.key==='Escape'){e.preventDefault();toggleOverview();return;}
+  if(overviewOn)return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '||e.key==='ArrowDown'){go(idx+1);return;}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'||e.key==='ArrowUp')go(idx-1);
+  if(e.key==='Home')go(0);if(e.key==='End')go(total-1);
+});
+let wheelTO=null,wheelAcc=0;
+addEventListener('wheel',e=>{wheelAcc+=e.deltaY+e.deltaX;if(Math.abs(wheelAcc)>50){go(idx+(wheelAcc>0?1:-1));wheelAcc=0;}clearTimeout(wheelTO);wheelTO=setTimeout(()=>wheelAcc=0,150)},{passive:true});
+let tx=0,ty=0;
+addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))go(idx+(dx<0?1:-1))},{passive:true});
+go(0);
+</script>
+
+<!-- Ghost Audio + Full Audio Auto-advance -->
+<script>
+(function(){
+  let currentAudio=null,currentBtn=null;
+  function stopAllAudio(){
+    if(currentAudio){currentAudio.pause();currentAudio.currentTime=0;}
+    if(currentBtn){
+      currentBtn.classList.remove('playing');
+      const pid=currentBtn.dataset.paraId;
+      if(pid){const p=document.getElementById(pid);if(p)p.classList.remove('para--playing');}
+    }
+    currentAudio=null;currentBtn=null;
+  }
+  window.stopAllAudio=stopAllAudio;
+
+  const durations={};
+  document.querySelectorAll('.ghost-audio__btn[data-para-id]').forEach(btn=>{
+    const pid=btn.dataset.paraId,src=btn.dataset.audioSrc;
+    if(!pid||!src)return;
+    const a=new Audio(src);
+    a.addEventListener('loadedmetadata',()=>{durations[pid]=a.duration;});
+  });
+
+  document.querySelectorAll('.ghost-audio__btn').forEach(btn=>{
+    const src=btn.dataset.audioSrc,pid=btn.dataset.paraId;
+    const isFull=btn.classList.contains('ghost-audio__btn--full');
+    if(!src)return;
+    const audio=new Audio(src);
+
+    if(isFull){
+      const GAP=1.0;
+      audio.addEventListener('timeupdate',()=>{
+        if(currentAudio!==audio)return;
+        const d1=durations['para-1'],d2=durations['para-2'],d3=durations['para-3'];
+        if(!d1||!d2||!d3)return;
+        const t=audio.currentTime;
+        let target;
+        if(t>=d1+d2+GAP*2)target=5;
+        else if(t>=d1+GAP)target=3;
+        else if(t>=0.1)target=2;
+        if(target!==undefined&&idx!==target)go(target,true);
+      });
+      audio.addEventListener('ended',()=>{btn.classList.remove('playing');if(currentBtn===btn){currentAudio=null;currentBtn=null;}});
+    } else {
+      audio.addEventListener('ended',()=>{
+        btn.classList.remove('playing');
+        if(pid){const p=document.getElementById(pid);if(p)p.classList.remove('para--playing');}
+        if(currentBtn===btn){currentAudio=null;currentBtn=null;}
+      });
+    }
+
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      if(currentAudio===audio){stopAllAudio();return;}
+      stopAllAudio();
+      audio.play();
+      btn.classList.add('playing');
+      if(pid){const p=document.getElementById(pid);if(p)p.classList.add('para--playing');}
+      currentAudio=audio;currentBtn=btn;
+    });
+  });
+})();
+</script>
+
+<!-- Vocab Tooltip mobile tap -->
+<script>
+(function(){
+  let lastTapped=null;
+  document.querySelectorAll('.vocab-highlight').forEach(el=>{
+    el.addEventListener('touchstart',e=>{e.stopPropagation();},{passive:false});
+    el.addEventListener('click',e=>{
+      e.stopPropagation();
+      if(lastTapped&&lastTapped!==el)lastTapped.classList.remove('tapped');
+      el.classList.toggle('tapped');
+      lastTapped=el.classList.contains('tapped')?el:null;
+    });
+  });
+  document.addEventListener('click',()=>{if(lastTapped){lastTapped.classList.remove('tapped');lastTapped=null;}});
+})();
+</script>
+
+<!-- Quiz open answer -->
+<script>
+function toggleAnswer(btn){
+  const content=btn.nextElementSibling;if(!content)return;
+  const isVisible=content.classList.contains('visible');
+  if(isVisible){content.classList.remove('visible');setTimeout(()=>{content.style.display='none';},300);btn.textContent='查看参考答案';}
+  else{content.style.display='block';requestAnimationFrame(()=>content.classList.add('visible'));btn.textContent='收起答案';}
+}
+</script>
+
+<!-- Motion One animations -->
+<script type="module">
+let motion;
+try{motion=await import('https://cdn.jsdelivr.net/npm/motion@11.11.17/+esm');}
+catch(e){document.querySelectorAll('[data-anim]').forEach(el=>{el.style.opacity='1';el.style.transform='none'});}
+if(motion){
+  const{animate,stagger}=motion;
+  const EASE=[.22,1,.36,1];
+  const slides=[...document.querySelectorAll('.slide')];
+  function playSlide(i){
+    const slide=slides[i];if(!slide)return;
+    slide.querySelectorAll('[data-anim]').forEach(el=>{el.style.opacity='';el.style.transform='';});
+    const all=[...slide.querySelectorAll('[data-anim]')];if(!all.length)return;
+    const recipe=slide.dataset.animate||(slide.classList.contains('hero')?'hero':'cascade');
+    if(recipe==='hero')animate(all,{opacity:[0,1],y:[14,0]},{duration:.9,delay:stagger(.16,{start:.2}),easing:EASE});
+    else animate(all,{opacity:[0,1],y:[16,0]},{duration:.75,delay:stagger(.1,{start:.15}),easing:EASE});
+  }
+  window.__playSlide=playSlide;
+  playSlide(0);
+}
+</script>
+</body>
+</html>
