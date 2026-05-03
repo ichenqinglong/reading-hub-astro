@@ -439,7 +439,7 @@
 .sentence.lead{font-size:clamp(20px,1.85vw,26px)}
 .sentence.lead::first-letter{float:left;font-size:4em;line-height:.8;padding-right:.12em;color:var(--accent);font-family:var(--serif-en);font-weight:700}
 .content-split{display:grid;grid-template-columns:1.35fr 0.65fr;gap:4vw;flex:1;align-items:start;padding-top:2vh}
-.content-split__text{display:flex;flex-direction:column}
+.content-split__text{display:flex;flex-direction:column;overflow-y:auto;max-height:72vh;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--accent-soft) transparent;padding-right:1vw}
 .content-split__img{display:flex;flex-direction:column;gap:1vh}
 .content-split__img img{width:100%;border-radius:4px;object-fit:cover;object-position:top center}
 .illus__cap{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.6;margin-top:.8vh}
@@ -449,7 +449,7 @@
 .slide-fullbg .fullbg-img{position:absolute;inset:0;z-index:0}
 .slide-fullbg .fullbg-img img{width:100%;height:100%;object-fit:cover;object-position:top center}
 .slide-fullbg .fullbg-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(var(--ink-rgb),.88) 0%,rgba(var(--ink-rgb),.6) 50%,rgba(var(--ink-rgb),.2) 100%)}
-.slide-fullbg .fullbg-text{max-width:55vw;position:relative;z-index:2}
+.slide-fullbg .fullbg-text{max-width:55vw;position:relative;z-index:2;overflow-y:auto;max-height:78vh;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--accent-soft) transparent;padding-right:1vw;padding-bottom:2vh}
 /* ── Hero page ── */
 .hero__body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:2.4vh;position:relative;z-index:2}
 .hero__title{font-family:var(--serif-en);font-weight:800;font-size:clamp(48px,8vw,120px);line-height:.92;letter-spacing:-.025em}
@@ -472,7 +472,7 @@
 .ghost-audio__btn.playing .pause-icon{display:block}
 .ghost-audio__btn .pause-icon{display:none}
 .ghost-audio__btn--full{padding:8px 20px;font-size:.85rem;margin-top:1.5rem}
-.para--playing{border-left:2px solid var(--accent,currentColor);padding-left:1rem;transition:border-color .3s}
+.para--playing{border-left:2px solid var(--accent,currentColor);transition:border-color .3s}
 /* ── Vocab Tooltip ── */
 .vocab-highlight{position:relative;font-weight:600;border-bottom:1px dashed var(--accent,currentColor);cursor:help;transition:color .2s}
 .vocab-highlight:hover{color:var(--accent,currentColor)}
@@ -1049,6 +1049,26 @@ if(motion){
   });
   document.addEventListener('click',()=>{
     if(lastTapped){lastTapped.classList.remove('tapped');lastTapped=null;}
+  });
+})();
+
+// ── Scrollable text areas: prevent scroll from triggering page navigation ──
+(function(){
+  document.querySelectorAll('.content-split__text, .fullbg-text').forEach(el=>{
+    el.addEventListener('wheel',e=>{
+      const atTop=el.scrollTop===0;
+      const atBottom=el.scrollTop+el.clientHeight>=el.scrollHeight-1;
+      if((e.deltaY<0&&atTop)||(e.deltaY>0&&atBottom))return;
+      e.stopPropagation();
+    },{passive:false});
+    el.addEventListener('touchstart',e=>{el._touchY=e.touches[0].clientY;},{passive:true});
+    el.addEventListener('touchmove',e=>{
+      const dy=el._touchY-e.touches[0].clientY;
+      const atTop=el.scrollTop===0;
+      const atBottom=el.scrollTop+el.clientHeight>=el.scrollHeight-1;
+      if((dy<0&&atTop)||(dy>0&&atBottom))return;
+      e.stopPropagation();
+    },{passive:false});
   });
 })();
 </script>
