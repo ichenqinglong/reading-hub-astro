@@ -435,7 +435,8 @@
 
 
 /* ── Reading Deck: Sentence ── */
-.sentence{font-family:var(--serif-zh),"Noto Serif SC",serif;font-size:clamp(18px,1.65vw,23px);line-height:1.75;margin-top:2em;font-weight:400}
+.sentence{font-family:var(--serif-zh),"Noto Serif SC",serif;font-size:clamp(18px,1.65vw,23px);line-height:1.75;margin-top:1.4em;font-weight:400}
+.sentence:first-child{margin-top:0}
 .sentence.lead{font-size:clamp(20px,1.85vw,26px)}
 .sentence.lead::first-letter{float:left;font-size:4em;line-height:.8;padding-right:.12em;color:var(--accent);font-family:var(--serif-en);font-weight:700}
 .content-split{display:grid;grid-template-columns:1.35fr 0.65fr;gap:4vw;flex:1;align-items:start;padding-top:2vh}
@@ -622,7 +623,7 @@ body.light-bg #nav .dot.active{background:rgba(var(--ink-rgb),.9)}
       <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
     </button>
   </div>
-  <div class="fullbg-text" data-anim="cascade" style="flex:1;display:flex;flex-direction:column;justify-content:center">
+  <div class="fullbg-text" data-anim="cascade" style="flex:1;display:flex;flex-direction:column;justify-content:flex-start;padding-top:2vh">
     <p class="sentence lead" id="para-2" style="max-width:80%">My six-year-old tugged at my hand, eyeing the old play area covered in grime.</p>
     <p class="sentence" style="max-width:62%">"What do we do here?" she asked.</p>
     <p class="sentence" style="max-width:90%">I forced a smile and made up a game about an enchanted forest, dodging the <span class="vocab-highlight" data-meaning="皱巴巴的 — crushed into wrinkles">crumpled</span> wrappers littering the floor.</p>
