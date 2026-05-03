@@ -445,9 +445,10 @@
 .illus__cap{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.6;margin-top:.8vh}
 /* ── Full-bg variant (Layout D) ── */
 .slide-fullbg{position:relative}
-.slide-fullbg .fullbg-img{position:absolute;inset:0;z-index:-2}
+.slide-fullbg::before{background:none !important;backdrop-filter:none !important}
+.slide-fullbg .fullbg-img{position:absolute;inset:0;z-index:0}
 .slide-fullbg .fullbg-img img{width:100%;height:100%;object-fit:cover;object-position:top center}
-.slide-fullbg .fullbg-overlay{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(var(--ink-rgb),.88) 0%,rgba(var(--ink-rgb),.6) 50%,rgba(var(--ink-rgb),.2) 100%)}
+.slide-fullbg .fullbg-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(var(--ink-rgb),.88) 0%,rgba(var(--ink-rgb),.6) 50%,rgba(var(--ink-rgb),.2) 100%)}
 .slide-fullbg .fullbg-text{max-width:55vw;position:relative;z-index:2}
 /* ── Hero page ── */
 .hero__body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:2.4vh;position:relative;z-index:2}
