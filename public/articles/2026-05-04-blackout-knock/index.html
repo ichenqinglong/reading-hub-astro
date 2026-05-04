@@ -443,24 +443,25 @@
 .sentence:first-child{margin-top:0}
 .sentence.lead{font-size:clamp(20px,1.85vw,26px);font-weight:500;opacity:1}
 .sentence.lead::first-letter{font-size:2.8em;float:left;line-height:.8;margin-right:.08em;font-weight:700;font-family:var(--serif-en)}
-
-/* Layout A: left text 1.35fr, right image 0.65fr */
 .content-split{flex:1;display:grid;grid-template-columns:1.35fr 0.65fr;gap:4vw;align-items:start;min-height:0}
-/* Layout B: left image 0.65fr, right text 1.35fr */
 .content-split--b{grid-template-columns:0.65fr 1.35fr}
 .content-split__text{overflow-y:auto;max-height:72vh;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--accent-soft) transparent;padding-right:1vw}
 .content-split__img{display:flex;flex-direction:column;gap:1vh;align-self:center}
 .content-split__img img{width:100%;border-radius:4px;object-fit:cover;max-height:55vh}
 .illus__cap{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin-top:.6vh}
-
-/* V2: Vocab vertical list */
+.slide-intro{position:relative}
+.slide-intro::before{background:none !important;backdrop-filter:none !important}
+.intro-bg{position:absolute;inset:0;z-index:0}
+.intro-bg img{width:100%;height:100%;object-fit:cover;object-position:center}
+.intro-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(26,46,26,.85) 0%,rgba(26,46,26,.6) 55%,rgba(26,46,26,.2) 100%)}
+.intro-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;max-width:60vw}
+.intro-label{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;opacity:.45;margin-bottom:3vh}
+.intro-sentence{font-family:"Noto Serif SC",serif;font-size:clamp(1.6rem,3.4vw,3.2rem);line-height:1.35;font-weight:500;letter-spacing:.01em;opacity:.96}
 .vocab-list{display:flex;flex-direction:column;gap:0;max-width:72vw}
 .vocab-list__item{display:flex;align-items:baseline;gap:2vw;padding:2.2vh 0;border-bottom:1px solid rgba(var(--ink-rgb),.12)}
 .vocab-list__word{font-family:var(--serif-en);font-weight:700;font-size:clamp(28px,3.5vw,52px);letter-spacing:-.01em;flex-shrink:0}
 .vocab-list__meta{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.45;flex-shrink:0}
 .vocab-list__def{font-family:var(--sans-zh);font-size:max(14px,1.2vw);opacity:.7;line-height:1.5}
-
-/* ── Ghost Audio ── */
 .ghost-audio__btn{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--border,rgba(255,255,255,0.2));border-radius:20px;background:transparent;color:inherit;cursor:pointer;font-size:0.75rem;letter-spacing:0.05em;transition:border-color 0.2s,color 0.2s}
 .ghost-audio__btn:hover{border-color:var(--accent,currentColor);color:var(--accent,currentColor)}
 .ghost-audio__btn svg{width:14px;height:14px;flex-shrink:0}
@@ -470,8 +471,6 @@
 .ghost-audio__btn .pause-icon{display:none}
 .ghost-audio__btn--full{padding:8px 20px;font-size:0.85rem;margin-top:1.5rem}
 .para--playing{border-left:2px solid var(--accent,currentColor);transition:border-color 0.3s}
-
-/* Sentence-level audio micro-button */
 .sent-audio{display:inline-flex;align-items:center;vertical-align:middle;margin-left:6px;padding:2px 6px;border:1px solid var(--border,rgba(255,255,255,0.15));border-radius:12px;background:transparent;color:inherit;cursor:pointer;font-size:0.65rem;opacity:.55;transition:opacity 0.2s,border-color 0.2s;flex-shrink:0}
 .sent-audio:hover{opacity:1;border-color:var(--accent,currentColor)}
 .sent-audio.playing{opacity:1;border-color:var(--accent,currentColor);color:var(--accent,currentColor)}
@@ -479,15 +478,11 @@
 .sent-audio.playing .pause-icon{display:block}
 .sent-audio .pause-icon{display:none}
 .sent-audio svg{width:10px;height:10px}
-
-/* ── Vocab Tooltip ── */
 .vocab-highlight{position:relative;font-weight:600;border-bottom:1px dashed var(--accent,currentColor);cursor:help;transition:color 0.2s}
 .vocab-highlight:hover{color:var(--accent,currentColor)}
 .vocab-highlight::after{content:attr(data-meaning);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);background:var(--ink);color:var(--tooltip-text,#f0f0f0);padding:6px 12px;border-radius:6px;font-size:0.78rem;font-weight:400;white-space:normal;max-width:260px;line-height:1.4;pointer-events:none;opacity:0;transition:opacity 0.2s,transform 0.2s;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
 .vocab-highlight:hover::after{opacity:1;transform:translateX(-50%) translateY(0)}
 .vocab-highlight.tapped::after{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* Hero body */
 .hero__body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:1.5vh}
 .hero__title{font-family:var(--serif-en);font-weight:700;font-size:clamp(2.5rem,8vw,6rem);line-height:.95;letter-spacing:-.02em}
 .hero__sub{font-family:var(--serif-zh);font-weight:400;font-size:clamp(16px,1.8vw,24px);opacity:.7;margin-top:1vh}
@@ -503,106 +498,61 @@
 <div id="hint">← → 翻页 · ESC 索引</div>
 <div id="deck">
 <section class="slide hero dark" data-theme="dark">
-  <div class="chrome">
-    <span class="kicker">Reading Practice · 2026-05-04</span>
-    <span class="kicker">Level 3/5</span>
-  </div>
+  <div class="chrome"><span class="kicker">Reading Practice · 2026-05-04</span><span class="kicker">Level 3/5</span></div>
   <div class="hero__body" style="align-items:center;text-align:center">
     <span class="kicker" data-anim="hero" style="margin-bottom:3vh">The Quiet Room</span>
     <h1 class="hero__title" data-anim="hero" style="font-size:clamp(3rem,10vw,8rem);text-align:center">The Knock</h1>
     <p class="hero__sub" data-anim="hero" style="text-align:center;max-width:60vw">当一切信号消失，门外响起了敲门声</p>
-    <div class="badge-row" data-anim="hero" style="justify-content:center">
-      <span class="badge">LV.3</span>
-    </div>
-    <button class="ghost-audio__btn ghost-audio__btn--full" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/full_20260504210527_bcf12917.mp3" data-para-id="">
-      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-      <span>全文朗读</span></button>
+    <div class="badge-row" data-anim="hero" style="justify-content:center"><span class="badge">LV.3</span></div>
+    <button class="ghost-audio__btn ghost-audio__btn--full" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/full_20260504210527_bcf12917.mp3" data-para-id=""><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg><span>全文朗读</span></button>
   </div>
-  <div class="foot"><span>Leave the World Behind</span><span>1 / 5</span></div>
-</section>
-
-<section class="slide hero light" data-theme="light">
-  <div class="chrome">
-    <span class="kicker">Act I</span>
-    <span class="kicker">Vocabulary Warm-up</span>
-  </div>
+  <div class="foot"><span>Leave the World Behind</span><span>1 / 7</span></div>
+</section>\n\n<section class="slide hero light" data-theme="light">
+  <div class="chrome"><span class="kicker">Act I</span><span class="kicker">Vocabulary Warm-up</span></div>
   <div class="hero__body" style="gap:0">
     <h2 class="hero__title" data-anim="hero" style="font-size:clamp(28px,4vw,56px);margin-bottom:4vh;color:var(--ink)">Target Words</h2>
     <div class="vocab-list" data-anim="cascade">
-      <div class="vocab-list__item">
-        <span class="vocab-list__word">vacation</span>
-        <span class="vocab-list__meta">n.</span>
-        <span class="vocab-list__def">假期 — a period of rest away from work</span>
-      </div>
-      <div class="vocab-list__item">
-        <span class="vocab-list__word">tremble</span>
-        <span class="vocab-list__meta">v.</span>
-        <span class="vocab-list__def">颤抖 — to shake involuntarily from fear</span>
-      </div>
-      <div class="vocab-list__item">
-        <span class="vocab-list__word">scramble</span>
-        <span class="vocab-list__meta">v.</span>
-        <span class="vocab-list__def">争抚 — to move quickly and urgently</span>
-      </div>
-      <div class="vocab-list__item">
-        <span class="vocab-list__word">evacuate</span>
-        <span class="vocab-list__meta">v.</span>
-        <span class="vocab-list__def">撤离 — to leave a place due to danger</span>
-      </div>
-      <div class="vocab-list__item">
-        <span class="vocab-list__word">chaos</span>
-        <span class="vocab-list__meta">n.</span>
-        <span class="vocab-list__def">混乱 — complete disorder and confusion</span>
-      </div>
+      <div class="vocab-list__item"><span class="vocab-list__word">vacation</span><span class="vocab-list__meta">n.</span><span class="vocab-list__def">假期 — a period of rest away from work</span></div>
+      <div class="vocab-list__item"><span class="vocab-list__word">tremble</span><span class="vocab-list__meta">v.</span><span class="vocab-list__def">颤抖 — to shake involuntarily from fear</span></div>
+      <div class="vocab-list__item"><span class="vocab-list__word">scramble</span><span class="vocab-list__meta">v.</span><span class="vocab-list__def">争抚 — to move quickly and urgently</span></div>
+      <div class="vocab-list__item"><span class="vocab-list__word">evacuate</span><span class="vocab-list__meta">v.</span><span class="vocab-list__def">撤离 — to leave a place due to danger</span></div>
+      <div class="vocab-list__item"><span class="vocab-list__word">chaos</span><span class="vocab-list__meta">n.</span><span class="vocab-list__def">混乱 — complete disorder and confusion</span></div>
     </div>
   </div>
-  <div class="foot"><span>词汇预热 · 先认识，再阅读</span><span>2 / 5</span></div>
-</section>
-
-<section class="slide dark" data-theme="dark">
+  <div class="foot"><span>词汇预热 · 先认识，再阅读</span><span>2 / 7</span></div>
+</section>\n\n<section class="slide dark slide-intro" data-theme="dark">
+  <div class="intro-bg"><img src="./scene-01.png" alt="the house went dark"></div>
+  <div class="intro-overlay"></div>
+  <div class="chrome" style="position:relative;z-index:2">
+    <span class="kicker">Paragraph 1</span>
+    <button class="ghost-audio__btn" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_0_20260504210452_d3a5f2e3.mp3" data-para-id="para-1"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
+  </div>
+  <div class="intro-body" data-anim="cascade">
+    <span class="intro-label">Act II · Read</span>
+    <p class="intro-sentence" id="para-1">Amanda had been asleep for two hours when the house went dark.</p>
+  </div>
+  <div class="foot" style="position:relative;z-index:2"><span>Paragraph 1 of 2</span><span>3 / 7</span></div>
+</section>\n\n<section class="slide dark" data-theme="dark">
   <div class="chrome">
     <span>Paragraph 1</span>
-    <button class="ghost-audio__btn" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_0_20260504210452_d3a5f2e3.mp3" data-para-id="para-1">
-      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-      </button>
+    <button class="ghost-audio__btn" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_0_20260504210452_d3a5f2e3.mp3" data-para-id="para-1-full"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
   </div>
   <div class="content-split">
     <div class="content-split__text" data-anim="cascade">
-      <p class="sentence lead" id="para-1" style="max-width:88%">Amanda had been asleep for two hours when the house went dark.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_0_20260504210452_d3a5f2e3.mp3">
-      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-    </button></p>
-      <p class="sentence" style="max-width:96%">No hum of the refrigerator. No glow from the router. Just the August night pressing in through the windows, and the sound of her own breathing.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_1_20260504210457_013de26a.mp3">
-      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-    </button></p>
-      <p class="sentence" style="max-width:62%">“Clay.” She shook him. “The power’s out.”<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_2_20260504210500_80e5eb1e.mp3">
-      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-    </button></p>
-      <p class="sentence" style="max-width:98%">They lit candles and checked their phones—no signal. The kids stumbled downstairs in their sneakers, Archie complaining, Rose clutching a blanket. This was supposed to be a <span class="vocab-highlight" data-meaning="假期 — a period of rest away from work">vacation</span>, a week away from Brooklyn, from everything. Now the house felt like a box.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_3_20260504210506_51dd040e.mp3">
-      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-    </button></p>
-      <p class="sentence" style="max-width:48%">Then came the knock.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_4_20260504210508_8b4d853d.mp3">
-      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-    </button></p>
+      <p class="sentence lead" id="para-1-full" style="max-width:88%">Amanda had been asleep for two hours when the house went dark.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_0_20260504210452_d3a5f2e3.mp3"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button></p>
+      <p class="sentence" style="max-width:96%">No hum of the refrigerator. No glow from the router. Just the August night pressing in through the windows, and the sound of her own breathing.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_1_20260504210457_013de26a.mp3"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button></p>
+      <p class="sentence" style="max-width:62%">“Clay.” She shook him. “The power’s out.”<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_2_20260504210500_80e5eb1e.mp3"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button></p>
+      <p class="sentence" style="max-width:98%">They lit candles and checked their phones—no signal. The kids stumbled downstairs in their sneakers, Archie complaining, Rose clutching a blanket. This was supposed to be a <span class="vocab-highlight" data-meaning="假期 — a period of rest away from work">vacation</span>, a week away from Brooklyn, from everything. Now the house felt like a box.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_3_20260504210506_51dd040e.mp3"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button></p>
+      <p class="sentence" style="max-width:48%">Then came the knock.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_4_20260504210508_8b4d853d.mp3"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button></p>
     </div>
     <figure class="content-split__img" data-anim="cascade">
       <img src="./scene-01.png" alt="they lit candles, no signal">
       <figcaption class="illus__cap">they lit candles, no signal</figcaption>
     </figure>
   </div>
-  <div class="foot"><span>Paragraph 1 of 2</span><span>3 / 5</span></div>
-</section>
-
-<section class="slide hero dark" data-theme="dark">
-  <div class="chrome">
-    <span class="kicker">Key Question</span>
-  </div>
+  <div class="foot"><span>Paragraph 1 of 2</span><span>4 / 7</span></div>
+</section>\n\n<section class="slide hero dark" data-theme="dark">
+  <div class="chrome"><span class="kicker">Key Question</span></div>
   <div class="hero__body" style="flex-direction:row;align-items:center;gap:6vw">
     <blockquote class="hero__quote" data-anim="quote" style="text-align:left;max-width:55vw;font-size:clamp(1.6rem,3.6vw,3.2rem)">
       “Then came the knock.”
@@ -612,16 +562,23 @@
       <span class="meta" style="font-size:max(11px,.9vw)">Who stands outside<br>when the world goes dark?</span>
     </div>
   </div>
-  <div class="foot"><span>— Leave the World Behind</span><span>4 / 5</span></div>
-</section>
-
-<section class="slide dark" data-theme="dark">
+  <div class="foot"><span>— Leave the World Behind</span><span>5 / 7</span></div>
+</section>\n\n<section class="slide dark slide-intro" data-theme="dark">
+  <div class="intro-bg"><img src="./scene-02.png" alt="an older Black couple standing in the dark"></div>
+  <div class="intro-overlay"></div>
+  <div class="chrome" style="position:relative;z-index:2">
+    <span class="kicker">Paragraph 2</span>
+    <button class="ghost-audio__btn" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_5_20260504210516_69f8cf5a.mp3" data-para-id="para-2"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
+  </div>
+  <div class="intro-body" data-anim="cascade">
+    <span class="intro-label">Act III · Read</span>
+    <p class="intro-sentence" id="para-2">Amanda’s hands began to <span class="vocab-highlight" data-meaning="颤抖 — to shake involuntarily from fear">tremble</span>.</p>
+  </div>
+  <div class="foot" style="position:relative;z-index:2"><span>Paragraph 2 of 2</span><span>6 / 7</span></div>
+</section>\n\n<section class="slide dark" data-theme="dark">
   <div class="chrome">
     <span>Paragraph 2</span>
-    <button class="ghost-audio__btn" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_5_20260504210516_69f8cf5a.mp3" data-para-id="para-2">
-      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-      </button>
+    <button class="ghost-audio__btn" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_5_20260504210516_69f8cf5a.mp3" data-para-id="para-2-full"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
   </div>
   <div class="content-split content-split--b">
     <figure class="content-split__img" data-anim="cascade">
@@ -629,33 +586,15 @@
       <figcaption class="illus__cap">an older Black couple standing in the dark</figcaption>
     </figure>
     <div class="content-split__text" data-anim="cascade">
-      <p class="sentence lead" id="para-2" style="max-width:55%">Amanda’s hands began to <span class="vocab-highlight" data-meaning="颤抖 — to shake involuntarily from fear">tremble</span>.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_5_20260504210516_69f8cf5a.mp3">
-      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-    </button></p>
-      <p class="sentence" style="max-width:98%">Clay opened the door to find an older Black couple standing in the dark—G.H. Washington, who said he owned this house, and his wife Ruth. They had driven from Manhattan.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_5_20260504210516_69f8cf5a.mp3">
-      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-    </button></p>
-      <p class="sentence" style="max-width:96%">Something had happened there, G.H. said. The whole city had gone dark. People were beginning to <span class="vocab-highlight" data-meaning="争抚 — to move quickly and urgently">scramble</span> for gas, for food, for any way out. He and Ruth had managed to <span class="vocab-highlight" data-meaning="撤离 — to leave a place due to danger">evacuate</span> before the roads locked up.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_5_20260504210516_69f8cf5a.mp3">
-      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-    </button></p>
-      <p class="sentence" style="max-width:58%">“What kind of something?” Clay asked.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_6_20260504210519_295ac447.mp3">
-      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-    </button></p>
-      <p class="sentence" style="max-width:72%">G.H. shook his head. “We don’t know yet. That’s the honest answer.”<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_7_20260504210522_de2f25d9.mp3">
-      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-    </button></p>
-      <p class="sentence" style="max-width:98%">Outside, the woods were silent. No distant traffic, no city glow on the horizon. Just stars, and the <span class="vocab-highlight" data-meaning="混乱 — complete disorder and confusion">chaos</span> of not knowing what came next.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_8_20260504210526_9c693f5e.mp3">
-      <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-    </button></p>
+      <p class="sentence lead" id="para-2-full" style="max-width:55%">Amanda’s hands began to <span class="vocab-highlight" data-meaning="颤抖 — to shake involuntarily from fear">tremble</span>.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_5_20260504210516_69f8cf5a.mp3"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button></p>
+      <p class="sentence" style="max-width:98%">Clay opened the door to find an older Black couple standing in the dark—G.H. Washington, who said he owned this house, and his wife Ruth. They had driven from Manhattan.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_5_20260504210516_69f8cf5a.mp3"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button></p>
+      <p class="sentence" style="max-width:96%">Something had happened there, G.H. said. The whole city had gone dark. People were beginning to <span class="vocab-highlight" data-meaning="争抚 — to move quickly and urgently">scramble</span> for gas, for food, for any way out. He and Ruth had managed to <span class="vocab-highlight" data-meaning="撤离 — to leave a place due to danger">evacuate</span> before the roads locked up.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_5_20260504210516_69f8cf5a.mp3"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button></p>
+      <p class="sentence" style="max-width:58%">“What kind of something?” Clay asked.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_6_20260504210519_295ac447.mp3"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button></p>
+      <p class="sentence" style="max-width:72%">G.H. shook his head. “We don’t know yet. That’s the honest answer.”<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_7_20260504210522_de2f25d9.mp3"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button></p>
+      <p class="sentence" style="max-width:98%">Outside, the woods were silent. No distant traffic, no city glow on the horizon. Just stars, and the <span class="vocab-highlight" data-meaning="混乱 — complete disorder and confusion">chaos</span> of not knowing what came next.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_8_20260504210526_9c693f5e.mp3"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button></p>
     </div>
   </div>
-  <div class="foot"><span>Paragraph 2 of 2</span><span>5 / 5</span></div>
+  <div class="foot"><span>Paragraph 2 of 2</span><span>7 / 7</span></div>
 </section>
 </div>
 <div id="nav"></div>
@@ -993,27 +932,24 @@ if(motion){
 </script>
 <script>
 (function(){
-  let currentAudio=null,currentBtn=null;
+  let cur=null,curBtn=null;
   function stopAllAudio(){
-    if(currentAudio){currentAudio.pause();currentAudio.currentTime=0;}
-    if(currentBtn){
-      currentBtn.classList.remove('playing');
-      const pid=currentBtn.dataset.paraId;
+    if(cur){cur.pause();cur.currentTime=0;}
+    if(curBtn){
+      curBtn.classList.remove('playing');
+      const pid=curBtn.dataset.paraId;
       if(pid){const p=document.getElementById(pid);if(p)p.classList.remove('para--playing');}
     }
-    currentAudio=null;currentBtn=null;
+    cur=null;curBtn=null;
   }
   window.stopAllAudio=stopAllAudio;
-
-  const durations={};
-  document.querySelectorAll('.ghost-audio__btn[data-para-id]').forEach(btn=>{
-    const pid=btn.dataset.paraId,src=btn.dataset.audioSrc;
+  const dur={};
+  document.querySelectorAll('.ghost-audio__btn[data-para-id]').forEach(b=>{
+    const pid=b.dataset.paraId,src=b.dataset.audioSrc;
     if(!pid||!src)return;
     const a=new Audio(src);
-    a.addEventListener('loadedmetadata',()=>{durations[pid]=a.duration;});
+    a.addEventListener('loadedmetadata',()=>{dur[pid]=a.duration;});
   });
-
-  // Para-level buttons
   document.querySelectorAll('.ghost-audio__btn').forEach(btn=>{
     const src=btn.dataset.audioSrc,pid=btn.dataset.paraId;
     const isFull=btn.classList.contains('ghost-audio__btn--full');
@@ -1022,62 +958,58 @@ if(motion){
     if(isFull){
       const GAP=1.0;
       audio.addEventListener('timeupdate',()=>{
-        if(currentAudio!==audio)return;
-        const d1=durations['para-1'],d2=durations['para-2'];
+        if(cur!==audio)return;
+        const d1=dur['para-1'],d2=dur['para-2'];
         if(!d1||!d2)return;
         const t=audio.currentTime;
         let target;
-        if(t>=d1+GAP)target=4;
+        if(t>=d1+GAP)target=5;
         else if(t>=0.1)target=2;
         if(target!==undefined&&idx!==target)go(target,true);
       });
-      audio.addEventListener('ended',()=>{btn.classList.remove('playing');if(currentBtn===btn){currentAudio=null;currentBtn=null;}});
+      audio.addEventListener('ended',()=>{btn.classList.remove('playing');if(curBtn===btn){cur=null;curBtn=null;}});
     } else {
       audio.addEventListener('ended',()=>{
         btn.classList.remove('playing');
         if(pid){const p=document.getElementById(pid);if(p)p.classList.remove('para--playing');}
-        if(currentBtn===btn){currentAudio=null;currentBtn=null;}
+        if(curBtn===btn){cur=null;curBtn=null;}
       });
     }
     btn.addEventListener('click',e=>{
       e.stopPropagation();
-      if(currentAudio===audio){stopAllAudio();return;}
+      if(cur===audio){stopAllAudio();return;}
       stopAllAudio();audio.play();btn.classList.add('playing');
       if(pid){const p=document.getElementById(pid);if(p)p.classList.add('para--playing');}
-      currentAudio=audio;currentBtn=btn;
+      cur=audio;curBtn=btn;
     });
   });
-
-  // Sentence-level micro buttons
   document.querySelectorAll('.sent-audio').forEach(btn=>{
     const src=btn.dataset.audioSrc;
     if(!src)return;
     const audio=new Audio(src);
-    audio.addEventListener('ended',()=>{btn.classList.remove('playing');if(currentBtn===btn){currentAudio=null;currentBtn=null;}});
+    audio.addEventListener('ended',()=>{btn.classList.remove('playing');if(curBtn===btn){cur=null;curBtn=null;}});
     btn.addEventListener('click',e=>{
       e.stopPropagation();
-      if(currentAudio===audio){stopAllAudio();return;}
+      if(cur===audio){stopAllAudio();return;}
       stopAllAudio();audio.play();btn.classList.add('playing');
-      currentAudio=audio;currentBtn=btn;
+      cur=audio;curBtn=btn;
     });
   });
 })();
 </script>
 <script>
 (function(){
-  let lastTapped=null;
+  let last=null;
   document.querySelectorAll('.vocab-highlight').forEach(el=>{
     el.addEventListener('touchstart',e=>{e.stopPropagation();},{passive:false});
     el.addEventListener('click',e=>{
       e.stopPropagation();
-      if(lastTapped&&lastTapped!==el){lastTapped.classList.remove('tapped');}
+      if(last&&last!==el)last.classList.remove('tapped');
       el.classList.toggle('tapped');
-      lastTapped=el.classList.contains('tapped')?el:null;
+      last=el.classList.contains('tapped')?el:null;
     });
   });
-  document.addEventListener('click',()=>{
-    if(lastTapped){lastTapped.classList.remove('tapped');lastTapped=null;}
-  });
+  document.addEventListener('click',()=>{if(last){last.classList.remove('tapped');last=null;}});
 })();
 </script>
 </body>
