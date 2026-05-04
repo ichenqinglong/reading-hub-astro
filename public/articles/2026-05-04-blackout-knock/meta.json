@@ -1,0 +1,12 @@
+{
+  "slug": "2026-05-04-blackout-knock",
+  "title": "The Knock",
+  "subtitle": "当一切信号消失，门外响起了敲门声",
+  "date": "2026-05-04",
+  "level": 3,
+  "source": "Leave the World Behind",
+  "targetWords": ["vacation", "tremble", "scramble", "evacuate", "chaos"],
+  "paragraphs": 2,
+  "theme": "forest-ink",
+  "hero": "./hero.png"
+}
