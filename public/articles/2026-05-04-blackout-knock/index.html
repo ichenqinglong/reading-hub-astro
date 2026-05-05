@@ -438,7 +438,6 @@
   }
 
 
-/* ── Reading Deck Extensions ── */
 .sentence{font-family:"Noto Serif SC",serif;font-size:clamp(18px,1.65vw,23px);line-height:1.75;margin-top:1.4em;opacity:.92}
 .sentence:first-child{margin-top:0}
 .sentence.lead{font-size:clamp(20px,1.85vw,26px);font-weight:500;opacity:1}
@@ -457,11 +456,6 @@
 .intro-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;max-width:60vw}
 .intro-label{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;opacity:.45;margin-bottom:3vh}
 .intro-sentence{font-family:"Noto Serif SC",serif;font-size:clamp(1.6rem,3.4vw,3.2rem);line-height:1.35;font-weight:500;letter-spacing:.01em;opacity:.96}
-.vocab-list{display:flex;flex-direction:column;gap:0;max-width:72vw}
-.vocab-list__item{display:flex;align-items:baseline;gap:2vw;padding:2.2vh 0;border-bottom:1px solid rgba(var(--ink-rgb),.12)}
-.vocab-list__word{font-family:var(--serif-en);font-weight:700;font-size:clamp(28px,3.5vw,52px);letter-spacing:-.01em;flex-shrink:0}
-.vocab-list__meta{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.45;flex-shrink:0}
-.vocab-list__def{font-family:var(--sans-zh);font-size:max(14px,1.2vw);opacity:.7;line-height:1.5}
 .ghost-audio__btn{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--border,rgba(255,255,255,0.2));border-radius:20px;background:transparent;color:inherit;cursor:pointer;font-size:0.75rem;letter-spacing:0.05em;transition:border-color 0.2s,color 0.2s}
 .ghost-audio__btn:hover{border-color:var(--accent,currentColor);color:var(--accent,currentColor)}
 .ghost-audio__btn svg{width:14px;height:14px;flex-shrink:0}
@@ -489,8 +483,6 @@
 .badge-row{display:flex;gap:12px;margin-top:2vh}
 .badge{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:4px 12px;border:1px solid rgba(255,255,255,.25);border-radius:4px;opacity:.7}
 .hero__quote{font-family:var(--serif-en);font-style:italic;font-weight:400;font-size:clamp(1.4rem,3.2vw,2.8rem);line-height:1.4;max-width:65vw;opacity:.9}
-
-/* Layout V3: 词汇沉浸页 — 全屏背景 + 原文句子 + 目标词高亮 */
 .vocab-immerse-word{font-family:var(--serif-en);font-weight:800;font-size:clamp(2.4rem,5.5vw,5rem);letter-spacing:-.02em;color:var(--accent);line-height:1;display:block;margin-bottom:3vh}
 .vocab-immerse-sentence{font-family:"Noto Serif SC",serif;font-size:clamp(1.1rem,2vw,1.8rem);line-height:1.6;font-weight:400;opacity:.88;max-width:58vw}
 .vocab-immerse-sentence .hi{color:var(--accent);font-weight:700;font-style:italic}
@@ -511,22 +503,7 @@
     <div class="badge-row" data-anim="hero" style="justify-content:center"><span class="badge">LV.3</span></div>
     <button class="ghost-audio__btn ghost-audio__btn--full" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/full_20260504210527_bcf12917.mp3" data-para-id=""><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg><span>全文朗读</span></button>
   </div>
-  <div class="foot"><span>Leave the World Behind</span><span>1 / 12</span></div>
-</section>
-
-<section class="slide hero light" data-theme="light">
-  <div class="chrome"><span class="kicker">Act I</span><span class="kicker">Vocabulary Warm-up</span></div>
-  <div class="hero__body" style="gap:0">
-    <h2 class="hero__title" data-anim="hero" style="font-size:clamp(28px,4vw,56px);margin-bottom:4vh;color:var(--ink)">Target Words</h2>
-    <div class="vocab-list" data-anim="cascade">
-      <div class="vocab-list__item"><span class="vocab-list__word">vacation</span><span class="vocab-list__meta">n.</span><span class="vocab-list__def">假期 — a period of rest away from work</span></div>
-      <div class="vocab-list__item"><span class="vocab-list__word">tremble</span><span class="vocab-list__meta">v.</span><span class="vocab-list__def">颤抖 — to shake involuntarily from fear</span></div>
-      <div class="vocab-list__item"><span class="vocab-list__word">scramble</span><span class="vocab-list__meta">v.</span><span class="vocab-list__def">争抚 — to move quickly and urgently</span></div>
-      <div class="vocab-list__item"><span class="vocab-list__word">evacuate</span><span class="vocab-list__meta">v.</span><span class="vocab-list__def">撤离 — to leave a place due to danger</span></div>
-      <div class="vocab-list__item"><span class="vocab-list__word">chaos</span><span class="vocab-list__meta">n.</span><span class="vocab-list__def">混乱 — complete disorder and confusion</span></div>
-    </div>
-  </div>
-  <div class="foot"><span>词汇预热 · 先认识，再阅读</span><span>2 / 12</span></div>
+  <div class="foot"><span>Leave the World Behind</span><span>1 / 11</span></div>
 </section>
 
 <section class="slide dark slide-intro" data-theme="dark">
@@ -540,63 +517,7 @@
     <span class="vocab-immerse-word">vacation</span>
     <p class="vocab-immerse-sentence">This was supposed to be a <span class="hi">vacation</span>, a week away from Brooklyn, from everything.</p>
   </div>
-  <div class="foot" style="position:relative;z-index:2"><span>Vocabulary</span><span>2 / 12</span></div>
-</section>
-
-<section class="slide dark slide-intro" data-theme="dark">
-  <div class="intro-bg"><img src="./scene-03.png" alt="tremble"></div>
-  <div class="intro-overlay" style="background:linear-gradient(160deg,rgba(26,46,26,.92) 0%,rgba(26,46,26,.7) 45%,rgba(26,46,26,.15) 100%)"></div>
-  <div class="chrome" style="position:relative;z-index:2">
-    <span class="kicker">Target Word</span>
-    <button class="ghost-audio__btn" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_5_20260504210516_69f8cf5a.mp3" data-para-id=""><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
-  </div>
-  <div class="intro-body" data-anim="cascade" style="max-width:65vw">
-    <span class="vocab-immerse-word">tremble</span>
-    <p class="vocab-immerse-sentence">Amanda’s hands began to <span class="hi">tremble</span>.</p>
-  </div>
-  <div class="foot" style="position:relative;z-index:2"><span>Vocabulary</span><span>3 / 12</span></div>
-</section>
-
-<section class="slide dark slide-intro" data-theme="dark">
-  <div class="intro-bg"><img src="./scene-01.png" alt="scramble"></div>
-  <div class="intro-overlay" style="background:linear-gradient(160deg,rgba(26,46,26,.92) 0%,rgba(26,46,26,.7) 45%,rgba(26,46,26,.15) 100%)"></div>
-  <div class="chrome" style="position:relative;z-index:2">
-    <span class="kicker">Target Word</span>
-    <button class="ghost-audio__btn" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_5_20260504210516_69f8cf5a.mp3" data-para-id=""><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
-  </div>
-  <div class="intro-body" data-anim="cascade" style="max-width:65vw">
-    <span class="vocab-immerse-word">scramble</span>
-    <p class="vocab-immerse-sentence">People were beginning to <span class="hi">scramble</span> for gas, for food, for any way out.</p>
-  </div>
-  <div class="foot" style="position:relative;z-index:2"><span>Vocabulary</span><span>4 / 12</span></div>
-</section>
-
-<section class="slide dark slide-intro" data-theme="dark">
-  <div class="intro-bg"><img src="./scene-02.png" alt="evacuate"></div>
-  <div class="intro-overlay" style="background:linear-gradient(160deg,rgba(26,46,26,.92) 0%,rgba(26,46,26,.7) 45%,rgba(26,46,26,.15) 100%)"></div>
-  <div class="chrome" style="position:relative;z-index:2">
-    <span class="kicker">Target Word</span>
-    <button class="ghost-audio__btn" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_5_20260504210516_69f8cf5a.mp3" data-para-id=""><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
-  </div>
-  <div class="intro-body" data-anim="cascade" style="max-width:65vw">
-    <span class="vocab-immerse-word">evacuate</span>
-    <p class="vocab-immerse-sentence">He and Ruth had managed to <span class="hi">evacuate</span> before the roads locked up.</p>
-  </div>
-  <div class="foot" style="position:relative;z-index:2"><span>Vocabulary</span><span>5 / 12</span></div>
-</section>
-
-<section class="slide dark slide-intro" data-theme="dark">
-  <div class="intro-bg"><img src="./scene-04.png" alt="chaos"></div>
-  <div class="intro-overlay" style="background:linear-gradient(160deg,rgba(26,46,26,.92) 0%,rgba(26,46,26,.7) 45%,rgba(26,46,26,.15) 100%)"></div>
-  <div class="chrome" style="position:relative;z-index:2">
-    <span class="kicker">Target Word</span>
-    <button class="ghost-audio__btn" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_8_20260504210526_9c693f5e.mp3" data-para-id=""><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
-  </div>
-  <div class="intro-body" data-anim="cascade" style="max-width:65vw">
-    <span class="vocab-immerse-word">chaos</span>
-    <p class="vocab-immerse-sentence">Just stars, and the <span class="hi">chaos</span> of not knowing what came next.</p>
-  </div>
-  <div class="foot" style="position:relative;z-index:2"><span>Vocabulary</span><span>6 / 12</span></div>
+  <div class="foot" style="position:relative;z-index:2"><span>Vocabulary</span><span>2 / 11</span></div>
 </section>
 
 <section class="slide dark slide-intro" data-theme="dark">
@@ -607,10 +528,10 @@
     <button class="ghost-audio__btn" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_0_20260504210452_d3a5f2e3.mp3" data-para-id="para-1"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
   </div>
   <div class="intro-body" data-anim="cascade">
-    <span class="intro-label">Act II · Read</span>
+    <span class="intro-label">Act I · Read</span>
     <p class="intro-sentence" id="para-1">Amanda had been asleep for two hours when the house went dark.</p>
   </div>
-  <div class="foot" style="position:relative;z-index:2"><span>Paragraph 1 of 2</span><span>7 / 12</span></div>
+  <div class="foot" style="position:relative;z-index:2"><span>Paragraph 1 of 2</span><span>3 / 11</span></div>
 </section>
 
 <section class="slide dark" data-theme="dark">
@@ -631,7 +552,7 @@
       <figcaption class="illus__cap">they lit candles, no signal</figcaption>
     </figure>
   </div>
-  <div class="foot"><span>Paragraph 1 of 2</span><span>8 / 12</span></div>
+  <div class="foot"><span>Paragraph 1 of 2</span><span>4 / 11</span></div>
 </section>
 
 <section class="slide hero dark" data-theme="dark">
@@ -645,7 +566,63 @@
       <span class="meta" style="font-size:max(11px,.9vw)">Who stands outside<br>when the world goes dark?</span>
     </div>
   </div>
-  <div class="foot"><span>— Leave the World Behind</span><span>9 / 12</span></div>
+  <div class="foot"><span>— Leave the World Behind</span><span>5 / 11</span></div>
+</section>
+
+<section class="slide dark slide-intro" data-theme="dark">
+  <div class="intro-bg"><img src="./scene-03.png" alt="tremble"></div>
+  <div class="intro-overlay" style="background:linear-gradient(160deg,rgba(26,46,26,.92) 0%,rgba(26,46,26,.7) 45%,rgba(26,46,26,.15) 100%)"></div>
+  <div class="chrome" style="position:relative;z-index:2">
+    <span class="kicker">Target Word</span>
+    <button class="ghost-audio__btn" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_5_20260504210516_69f8cf5a.mp3" data-para-id=""><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
+  </div>
+  <div class="intro-body" data-anim="cascade" style="max-width:65vw">
+    <span class="vocab-immerse-word">tremble</span>
+    <p class="vocab-immerse-sentence">Amanda’s hands began to <span class="hi">tremble</span>.</p>
+  </div>
+  <div class="foot" style="position:relative;z-index:2"><span>Vocabulary</span><span>6 / 11</span></div>
+</section>
+
+<section class="slide dark slide-intro" data-theme="dark">
+  <div class="intro-bg"><img src="./scene-01.png" alt="scramble"></div>
+  <div class="intro-overlay" style="background:linear-gradient(160deg,rgba(26,46,26,.92) 0%,rgba(26,46,26,.7) 45%,rgba(26,46,26,.15) 100%)"></div>
+  <div class="chrome" style="position:relative;z-index:2">
+    <span class="kicker">Target Word</span>
+    <button class="ghost-audio__btn" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_5_20260504210516_69f8cf5a.mp3" data-para-id=""><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
+  </div>
+  <div class="intro-body" data-anim="cascade" style="max-width:65vw">
+    <span class="vocab-immerse-word">scramble</span>
+    <p class="vocab-immerse-sentence">People were beginning to <span class="hi">scramble</span> for gas, for food, for any way out.</p>
+  </div>
+  <div class="foot" style="position:relative;z-index:2"><span>Vocabulary</span><span>7 / 11</span></div>
+</section>
+
+<section class="slide dark slide-intro" data-theme="dark">
+  <div class="intro-bg"><img src="./scene-02.png" alt="evacuate"></div>
+  <div class="intro-overlay" style="background:linear-gradient(160deg,rgba(26,46,26,.92) 0%,rgba(26,46,26,.7) 45%,rgba(26,46,26,.15) 100%)"></div>
+  <div class="chrome" style="position:relative;z-index:2">
+    <span class="kicker">Target Word</span>
+    <button class="ghost-audio__btn" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_5_20260504210516_69f8cf5a.mp3" data-para-id=""><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
+  </div>
+  <div class="intro-body" data-anim="cascade" style="max-width:65vw">
+    <span class="vocab-immerse-word">evacuate</span>
+    <p class="vocab-immerse-sentence">He and Ruth had managed to <span class="hi">evacuate</span> before the roads locked up.</p>
+  </div>
+  <div class="foot" style="position:relative;z-index:2"><span>Vocabulary</span><span>8 / 11</span></div>
+</section>
+
+<section class="slide dark slide-intro" data-theme="dark">
+  <div class="intro-bg"><img src="./scene-04.png" alt="chaos"></div>
+  <div class="intro-overlay" style="background:linear-gradient(160deg,rgba(26,46,26,.92) 0%,rgba(26,46,26,.7) 45%,rgba(26,46,26,.15) 100%)"></div>
+  <div class="chrome" style="position:relative;z-index:2">
+    <span class="kicker">Target Word</span>
+    <button class="ghost-audio__btn" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_8_20260504210526_9c693f5e.mp3" data-para-id=""><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
+  </div>
+  <div class="intro-body" data-anim="cascade" style="max-width:65vw">
+    <span class="vocab-immerse-word">chaos</span>
+    <p class="vocab-immerse-sentence">Just stars, and the <span class="hi">chaos</span> of not knowing what came next.</p>
+  </div>
+  <div class="foot" style="position:relative;z-index:2"><span>Vocabulary</span><span>9 / 11</span></div>
 </section>
 
 <section class="slide dark slide-intro" data-theme="dark">
@@ -656,10 +633,10 @@
     <button class="ghost-audio__btn" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_5_20260504210516_69f8cf5a.mp3" data-para-id="para-2"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
   </div>
   <div class="intro-body" data-anim="cascade">
-    <span class="intro-label">Act III · Read</span>
+    <span class="intro-label">Act II · Read</span>
     <p class="intro-sentence" id="para-2">Amanda’s hands began to <span class="vocab-highlight" data-meaning="颤抖 — to shake involuntarily from fear">tremble</span>.</p>
   </div>
-  <div class="foot" style="position:relative;z-index:2"><span>Paragraph 2 of 2</span><span>10 / 12</span></div>
+  <div class="foot" style="position:relative;z-index:2"><span>Paragraph 2 of 2</span><span>10 / 11</span></div>
 </section>
 
 <section class="slide dark" data-theme="dark">
@@ -681,7 +658,7 @@
       <p class="sentence" id="s2-5" style="max-width:98%">Outside, the woods were silent. No distant traffic, no city glow on the horizon. Just stars, and the <span class="vocab-highlight" data-meaning="混乱 — complete disorder and confusion">chaos</span> of not knowing what came next.<button class="sent-audio" data-audio-src="https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_8_20260504210526_9c693f5e.mp3"><svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg><svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button></p>
     </div>
   </div>
-  <div class="foot"><span>Paragraph 2 of 2</span><span>12 / 12</span></div>
+  <div class="foot"><span>Paragraph 2 of 2</span><span>11 / 11</span></div>
 </section>
 </div>
 <div id="nav"></div>
@@ -1019,76 +996,34 @@ if(motion){
 </script>
 <script>
 (function(){
-  let cur=null,curBtn=null,seqTimer=null;
-
-  function clearHighlights(){
-    document.querySelectorAll('.sentence.playing').forEach(el=>el.classList.remove('playing'));
-  }
-
+  let cur=null,curBtn=null;
+  function clearHighlights(){document.querySelectorAll('.sentence.playing').forEach(el=>el.classList.remove('playing'));}
   function stopAllAudio(){
-    if(seqTimer){clearTimeout(seqTimer);seqTimer=null;}
     if(cur){cur.pause();cur.currentTime=0;}
     if(curBtn){curBtn.classList.remove('playing');}
-    clearHighlights();
-    cur=null;curBtn=null;
+    clearHighlights();cur=null;curBtn=null;
   }
   window.stopAllAudio=stopAllAudio;
 
-  // ── 顺序播放器（段落按钮）──
-  // data-seq: JSON数组，音频URL列表
-  // data-ids: JSON数组，对应句子元素id列表（para_5对应多句时，ids里放第一句id，其余句子共享高亮）
-  // 特殊：para_5音频对应s2-0/s2-1/s2-2三句，用data-group标记
   document.querySelectorAll('.seq-btn').forEach(btn=>{
     const srcs=JSON.parse(btn.dataset.seq||'[]');
     const ids=JSON.parse(btn.dataset.ids||'[]');
     if(!srcs.length)return;
-
-    // 预建 Audio 对象
     const audios=srcs.map(s=>new Audio(s));
-
-    function highlightSentence(id){
-      clearHighlights();
-      const el=document.getElementById(id);
-      if(el){
-        el.classList.add('playing');
-        // 如果这个id有兄弟句共享同一音频（data-shared-audio），也高亮它们
-        const shared=el.dataset.sharedGroup;
-        if(shared){
-          document.querySelectorAll(`[data-shared-group="${shared}"]`).forEach(s=>s.classList.add('playing'));
-        }
-      }
-    }
-
     function playStep(i){
-      if(i>=audios.length){
-        btn.classList.remove('playing');
-        clearHighlights();
-        cur=null;curBtn=null;
-        return;
-      }
-      const audio=audios[i];
-      const id=ids[i];
-      cur=audio;curBtn=btn;
-      highlightSentence(id);
-      audio.currentTime=0;
-      audio.play();
-      audio.onended=()=>{
-        if(curBtn!==btn)return; // 被外部停止了
-        playStep(i+1);
-      };
+      if(i>=audios.length){btn.classList.remove('playing');clearHighlights();cur=null;curBtn=null;return;}
+      const audio=audios[i];cur=audio;curBtn=btn;
+      clearHighlights();const el=document.getElementById(ids[i]);if(el)el.classList.add('playing');
+      audio.currentTime=0;audio.play();
+      audio.onended=()=>{if(curBtn!==btn)return;playStep(i+1);};
     }
-
     btn.addEventListener('click',e=>{
       e.stopPropagation();
       if(curBtn===btn){stopAllAudio();return;}
-      stopAllAudio();
-      btn.classList.add('playing');
-      playStep(0);
+      stopAllAudio();btn.classList.add('playing');playStep(0);
     });
   });
 
-  // ── 全文顺序播放（封面按钮）──
-  // 顺序：para_0→para_1→para_2→para_3→para_4 → 翻到第4页(idx=3) → para_5→para_6→para_7→para_8 → 翻到第6页(idx=6)
   const fullBtn=document.querySelector('.ghost-audio__btn--full');
   if(fullBtn){
     const fullSrcs=[
@@ -1102,71 +1037,36 @@ if(motion){
       "https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_7_20260504210522_de2f25d9.mp3",
       "https://chenqinglong--study.oss-cn-beijing.aliyuncs.com/typora/audio/para_8_20260504210526_9c693f5e.mp3"
     ];
-    // 每句对应的 [slideIdx(0-based), sentenceId]
+    // slide index (0-based): para1 full = slide 3, para2 full = slide 10
     const fullMap=[
-      [8,"s1-0"],[8,"s1-1"],[8,"s1-2"],[8,"s1-3"],[8,"s1-4"],
-      [11,"s2-0"],[11,"s2-3"],[11,"s2-4"],[11,"s2-5"]
+      [3,"s1-0"],[3,"s1-1"],[3,"s1-2"],[3,"s1-3"],[3,"s1-4"],
+      [10,"s2-0"],[10,"s2-3"],[10,"s2-4"],[10,"s2-5"]
     ];
     const fullAudios=fullSrcs.map(s=>new Audio(s));
-
     function playFull(i){
-      if(i>=fullAudios.length){
-        fullBtn.classList.remove('playing');
-        clearHighlights();
-        cur=null;curBtn=null;
-        return;
-      }
-      const [slideIdx,sentId]=fullMap[i];
-      const audio=fullAudios[i];
+      if(i>=fullAudios.length){fullBtn.classList.remove('playing');clearHighlights();cur=null;curBtn=null;return;}
+      const [slideIdx,sentId]=fullMap[i];const audio=fullAudios[i];
       cur=audio;curBtn=fullBtn;
-      // 翻页（不停音频）
       if(typeof idx!=='undefined'&&idx!==slideIdx)go(slideIdx,true);
-      // 高亮句子（延迟等翻页动画）
-      setTimeout(()=>{
-        clearHighlights();
-        const el=document.getElementById(sentId);
-        if(el){
-          el.classList.add('playing');
-          const shared=el.dataset.sharedGroup;
-          if(shared)document.querySelectorAll(`[data-shared-group="${shared}"]`).forEach(s=>s.classList.add('playing'));
-        }
-      },slideIdx!==idx?500:0);
-      audio.currentTime=0;
-      audio.play();
-      audio.onended=()=>{
-        if(curBtn!==fullBtn)return;
-        playFull(i+1);
-      };
+      setTimeout(()=>{clearHighlights();const el=document.getElementById(sentId);if(el)el.classList.add('playing');},idx!==slideIdx?500:0);
+      audio.currentTime=0;audio.play();
+      audio.onended=()=>{if(curBtn!==fullBtn)return;playFull(i+1);};
     }
-
     fullBtn.addEventListener('click',e=>{
       e.stopPropagation();
       if(curBtn===fullBtn){stopAllAudio();return;}
-      stopAllAudio();
-      fullBtn.classList.add('playing');
-      playFull(0);
+      stopAllAudio();fullBtn.classList.add('playing');playFull(0);
     });
   }
 
-  // ── 句级按钮（sent-audio）──
   document.querySelectorAll('.sent-audio').forEach(btn=>{
-    const src=btn.dataset.audioSrc;
-    if(!src)return;
-    const audio=new Audio(src);
-    const p=btn.closest('.sentence');
-    audio.onended=()=>{
-      btn.classList.remove('playing');
-      if(p)p.classList.remove('playing');
-      if(curBtn===btn){cur=null;curBtn=null;}
-    };
+    const src=btn.dataset.audioSrc;if(!src)return;
+    const audio=new Audio(src);const p=btn.closest('.sentence');
+    audio.onended=()=>{btn.classList.remove('playing');if(p)p.classList.remove('playing');if(curBtn===btn){cur=null;curBtn=null;}};
     btn.addEventListener('click',e=>{
       e.stopPropagation();
       if(cur===audio){stopAllAudio();return;}
-      stopAllAudio();
-      audio.play();
-      btn.classList.add('playing');
-      if(p)p.classList.add('playing');
-      cur=audio;curBtn=btn;
+      stopAllAudio();audio.play();btn.classList.add('playing');if(p)p.classList.add('playing');cur=audio;curBtn=btn;
     });
   });
 })();
